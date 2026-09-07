@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "vllm-position-parity canonical evidence",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run",
+    "prompt",
+    "samples"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "tool": {
+      "type": "string"
+    },
+    "collector_version": {
+      "type": "string"
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "run": {
+      "type": "object",
+      "required": [
+        "arm",
+        "execution_mode",
+        "repeats"
+      ],
+      "properties": {
+        "arm": {
+          "type": "string"
+        },
+        "execution_mode": {
+          "enum": [
+            "sequential",
+            "concurrent",
+            "other"
+          ]
+        },
+        "repeats": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "temperature": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "prompt_logprobs_k": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "logprobs_mode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "llm_kwargs": {
+          "type": "object"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "prompt": {
+      "type": "object",
+      "required": [
+        "sha256",
+        "token_count"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string"
+        },
+        "token_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "token_ids_sha256": {
+          "type": "string"
+        },
+        "raw_text_stored": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "repeat_index",
+          "positions"
+        ],
+        "properties": {
+          "repeat_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "completion_token_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "completion_sha256": {
+            "type": "string"
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "position",
+                "forced_token_id",
+                "forced_logprob",
+                "topk"
+              ],
+              "properties": {
+                "position": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "forced_token_id": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "forced_logprob": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "topk": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "token_id",
+                      "logprob"
+                    ],
+                    "properties": {
+                      "token_id": {
+                        "type": "integer"
+                      },
+                      "logprob": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "collection_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
