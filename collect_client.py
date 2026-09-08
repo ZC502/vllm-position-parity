@@ -370,7 +370,7 @@ def main() -> int:
     p = argparse.ArgumentParser(
         description=(
             "Collect repeated vLLM prompt_logprobs from a running "
-            "OpenAI-compatible /v1/completions endpoint."
+            "vLLM-compatible /v1/completions endpoint."
         )
     )
     p.add_argument(
