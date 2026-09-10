@@ -237,3 +237,5 @@ However, forced-token IDs and returned top-k token IDs can still reveal informat
 - No diagnosis or optimization layer
 - No external framework branding
 
+## Future work
+- **multi-arm matrix**
