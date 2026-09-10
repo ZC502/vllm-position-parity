@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-TOOL_VERSION = "0.1.1"
+TOOL_VERSION = "0.1.2"
 SCHEMA_VERSION = "0.1"
 DEFAULT_TIMEOUT_S = 300.0
 
@@ -423,6 +423,16 @@ def main() -> int:
         ),
     )
     p.add_argument("--metadata", action="append", default=[], metavar="KEY=VALUE")
+    p.add_argument(
+        "--active-fix",
+        action="append",
+        default=[],
+        metavar="FIX",
+        help=(
+            "Record a fix/patch active in this arm. May be repeated. "
+            "Metadata only; does not alter server behavior."
+        ),
+    )
 
     auth = p.add_mutually_exclusive_group()
     auth.add_argument(
@@ -589,7 +599,7 @@ def main() -> int:
         "source": {
             "framework": "vllm",
             "collector": "openai_http",
-            "api": "vllm_openai_compatible_completions",
+            "api": "vllm_compatible_completions",
         },
         "environment": {
             "scope": "collector_host",
@@ -622,6 +632,7 @@ def main() -> int:
             "endpoint_url_stored": False,
             "request_timeout_s": args.timeout,
             "automatic_retries": 0,
+            "active_fixes": list(args.active_fix),
             "metadata": metadata,
         },
         "prompt": {
