@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -54,6 +55,48 @@ class AnalyzeFixtureTests(unittest.TestCase):
         b["prompt"]["sha256"] = "different"
         with self.assertRaises(ValueError):
             analyze.build_report(a, b)
+
+
+    def test_old_evidence_defaults_active_fixes_to_empty(self):
+        run = self.load("exact.json")
+        self.assertEqual(run["run"]["active_fixes"], [])
+        report = analyze.build_report(run)
+        self.assertEqual(report["reference"]["active_fixes"], [])
+
+    def test_single_run_preserves_active_fixes(self):
+        run = self.load("exact.json")
+        run["run"]["active_fixes"] = ["#55122", "ple_semaphore_reset"]
+        report = analyze.build_report(run)
+        self.assertEqual(
+            report["reference"]["active_fixes"],
+            ["#55122", "ple_semaphore_reset"],
+        )
+        self.assertIsNone(report["candidate"])
+        self.assertIsNone(report["cross_arm"])
+
+    def test_cross_arm_preserves_active_fixes(self):
+        a = self.load("exact.json")
+        b = self.load("injected_flip.json")
+        a["run"]["active_fixes"] = []
+        b["run"]["active_fixes"] = ["#55122"]
+        report = analyze.build_report(a, b)
+        self.assertEqual(report["cross_arm"]["reference_active_fixes"], [])
+        self.assertEqual(report["cross_arm"]["candidate_active_fixes"], ["#55122"])
+
+    def test_directory_input_has_friendly_error(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaisesRegex(
+                ValueError,
+                "expected an evidence JSON file, but received a directory",
+            ):
+                analyze.load_run(tmp)
+
+    def test_output_path_file_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output_file = Path(tmp) / "report.json"
+            output_file.write_text("occupied", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "--out must be a directory"):
+                analyze.validate_output_dir(output_file)
 
 
 if __name__ == "__main__":
