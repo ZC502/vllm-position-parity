@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-TOOL_VERSION = "0.1.0"
+TOOL_VERSION = "0.1.2"
 SCHEMA_VERSION = "0.1"
 
 
@@ -217,6 +217,16 @@ def main() -> int:
     pg.add_argument("--disable-prefix-caching", action="store_true")
     p.add_argument("--llm-kwargs-json", default="{}")
     p.add_argument("--metadata", action="append", default=[], metavar="KEY=VALUE")
+    p.add_argument(
+        "--active-fix",
+        action="append",
+        default=[],
+        metavar="FIX",
+        help=(
+            "Record a fix/patch active in this arm. May be repeated. "
+            "Metadata only; does not alter runtime behavior."
+        ),
+    )
     args = p.parse_args()
 
     if args.repeats < 1:
@@ -307,6 +317,7 @@ def main() -> int:
             "logprobs_mode": logprobs_mode,
             "seed": args.seed,
             "llm_kwargs": llm_kwargs,
+            "active_fixes": list(args.active_fix),
             "metadata": metadata,
         },
         "prompt": {
