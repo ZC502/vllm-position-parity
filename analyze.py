@@ -16,23 +16,71 @@ SCHEMA_VERSION = "0.1"
 
 def load_run(path: str | Path) -> dict[str, Any]:
     path = Path(path)
-    with path.open("r", encoding="utf-8") as f:
-        run = json.load(f)
+
+    if not path.exists():
+        raise ValueError(f"{path}: evidence file does not exist")
+    if path.is_dir():
+        raise ValueError(
+            f"{path}: expected an evidence JSON file, but received a directory. "
+            "Usage: python analyze.py reference.json [candidate.json] "
+            "--out REPORT_DIRECTORY"
+        )
+    if not path.is_file():
+        raise ValueError(f"{path}: expected an evidence JSON file")
+
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            run = json.load(f)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"{path}: invalid JSON at line {exc.lineno}, column {exc.colno}: {exc.msg}"
+        ) from None
+    except OSError as exc:
+        raise ValueError(f"{path}: could not read evidence file: {exc}") from None
+
     validate_minimal(run, str(path))
+    normalize_backward_compat(run)
     return run
 
 
+def normalize_backward_compat(run: dict[str, Any]) -> None:
+    """Normalize optional fields introduced after schema v0.1.
+
+    v0.1/v0.1.1 evidence files do not contain run.active_fixes. Treat the
+    missing field as an empty list so old evidence remains directly usable.
+    """
+    run["run"].setdefault("active_fixes", [])
+
+
 def validate_minimal(run: dict[str, Any], source: str = "<memory>") -> None:
+    if not isinstance(run, dict):
+        raise ValueError(f"{source}: top-level JSON value must be an object")
+
     for key in ("schema_version", "run", "prompt", "samples"):
         if key not in run:
             raise ValueError(f"{source}: missing required key {key!r}")
+
     if str(run["schema_version"]) != SCHEMA_VERSION:
-        raise ValueError(f"{source}: unsupported schema_version {run['schema_version']!r}")
+        raise ValueError(
+            f"{source}: unsupported schema_version {run['schema_version']!r}"
+        )
+
+    if not isinstance(run["run"], dict):
+        raise ValueError(f"{source}: run must be an object")
+    if not isinstance(run["prompt"], dict):
+        raise ValueError(f"{source}: prompt must be an object")
     if not isinstance(run["samples"], list) or not run["samples"]:
         raise ValueError(f"{source}: samples must be a non-empty list")
+
     for key in ("sha256", "token_count"):
         if key not in run["prompt"]:
             raise ValueError(f"{source}: prompt.{key} is required")
+
+    active_fixes = run["run"].get("active_fixes", [])
+    if not isinstance(active_fixes, list) or not all(
+        isinstance(item, str) for item in active_fixes
+    ):
+        raise ValueError(f"{source}: run.active_fixes must be an array of strings")
 
 
 def _top1_id(row: dict[str, Any]) -> int | None:
@@ -124,6 +172,7 @@ def summarize_run(run: dict[str, Any]) -> dict[str, Any]:
     return {
         "label": run["run"].get("arm") or run["run"].get("label") or "run",
         "execution_mode": run["run"].get("execution_mode"),
+        "active_fixes": list(run["run"].get("active_fixes", [])),
         "summary": {
             "repeat_count": len(run["samples"]),
             "position_count": len(rows),
@@ -185,6 +234,8 @@ def compare_runs(ref_run, cand_run, ref_sum, cand_sum) -> dict[str, Any]:
         "candidate_label": cand_sum["label"],
         "reference_execution_mode": ref_sum["execution_mode"],
         "candidate_execution_mode": cand_sum["execution_mode"],
+        "reference_active_fixes": list(ref_sum.get("active_fixes", [])),
+        "candidate_active_fixes": list(cand_sum.get("active_fixes", [])),
         "summary": {
             "common_position_count": len(rows),
             "observed_first_cross_arm_modal_top1_mismatch_position": first_modal_mismatch,
@@ -202,7 +253,7 @@ def build_report(ref_run, cand_run=None) -> dict[str, Any]:
     cross = compare_runs(ref_run, cand_run, ref, cand) if cand_run else None
     return {
         "tool": "vllm-position-parity",
-        "tool_version": "0.1.0",
+        "tool_version": "0.1.2",
         "measurement_policy": {
             "automatic_bug_label": False,
             "automatic_root_cause": False,
@@ -295,27 +346,71 @@ def write_plot(path: Path, report: dict[str, Any]) -> bool:
     return True
 
 
+def validate_output_dir(path: str | Path) -> Path:
+    out = Path(path)
+    if out.exists() and not out.is_dir():
+        raise ValueError(
+            f"{out}: --out must be a directory, but an existing file was provided"
+        )
+    return out
+
+
 def main() -> int:
-    p = argparse.ArgumentParser(description="Position-resolved measurement for canonical vLLM evidence.")
-    p.add_argument("reference")
-    p.add_argument("candidate", nargs="?")
-    p.add_argument("--out", default="parity_report")
+    p = argparse.ArgumentParser(
+        description="Position-resolved measurement for canonical vLLM evidence."
+    )
+    p.add_argument(
+        "reference",
+        help="Canonical evidence JSON file (not a directory)",
+    )
+    p.add_argument(
+        "candidate",
+        nargs="?",
+        help="Optional candidate canonical evidence JSON file",
+    )
+    p.add_argument(
+        "--out",
+        default="parity_report",
+        help="Output directory (created automatically if it does not exist)",
+    )
     p.add_argument("--key-positions", type=int, default=50)
     p.add_argument("--no-plot", action="store_true")
     args = p.parse_args()
 
-    ref = load_run(args.reference)
-    cand = load_run(args.candidate) if args.candidate else None
-    report = build_report(ref, cand)
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    with (out / "report.json").open("w", encoding="utf-8") as f:
-        json.dump(report, f, indent=2, ensure_ascii=False, allow_nan=False)
-    write_key_positions_csv(out / "key_positions.csv", report, max(1, args.key_positions))
-    if not args.no_plot:
-        write_plot(out / "position_measurements.png", report)
+    if args.key_positions < 1:
+        p.error("--key-positions must be >= 1")
+
+    try:
+        ref = load_run(args.reference)
+        cand = load_run(args.candidate) if args.candidate else None
+        out = validate_output_dir(args.out)
+        report = build_report(ref, cand)
+
+        # Preserve automatic creation of a new output directory.
+        out.mkdir(parents=True, exist_ok=True)
+
+        with (out / "report.json").open("w", encoding="utf-8") as f:
+            json.dump(report, f, indent=2, ensure_ascii=False, allow_nan=False)
+
+        write_key_positions_csv(
+            out / "key_positions.csv",
+            report,
+            args.key_positions,
+        )
+        if not args.no_plot:
+            write_plot(out / "position_measurements.png", report)
+
+    except (ValueError, OSError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+
     print(f"report: {out / 'report.json'}")
     print(f"key positions: {out / 'key_positions.csv'}")
+    if not args.no_plot:
+        print(
+            f"plot: {out / 'position_measurements.png'} "
+            "(if matplotlib is available)"
+        )
     return 0
 
 
