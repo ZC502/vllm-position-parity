@@ -126,6 +126,32 @@ runs/parity/
 
 The JSON and CSV outputs use only the Python standard library. PNG generation uses `matplotlib` when available.
 
+### Input and output paths
+
+`analyze.py` takes evidence **JSON files** as positional inputs:
+
+```bash
+python analyze.py reference.json [candidate.json] --out report_directory/
+```
+- `reference` and optional `candidate` must be canonical evidence JSON files.
+-  `--out` is an output directory, not an input file.
+- To compare several arms, run pairwise analyses or inspect each arm's self-repeat report separately.
+
+### Recording active fixes
+
+When an experimental arm carries one or more patches or fixes, record them explicitly:
+
+```bash
+python collect_client.py \
+  ... \
+  --arm all4 \
+  --active-fix "#55122" \
+  --active-fix "moe_nonfused_finalize" \
+  --active-fix "flashinfer_cachekey" \
+  --active-fix "ple_semaphore_reset"
+```
+`active_fixes` is provenance only. The collector does not enable, validate, or interpret these fixes, and the analyzer does not infer causality from them.
+
 ## Canonical JSON contract
 
 The collector does not dump vLLM internal objects verbatim. It normalizes them into a small canonical evidence schema:
