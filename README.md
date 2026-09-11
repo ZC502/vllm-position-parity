@@ -2,7 +2,9 @@
 
 Position-resolved behavioral regression measurement for vLLM `prompt_logprobs`.
 
-> **native vLLM evidence → canonical JSON schema → position-resolved measurement report**
+ **native vLLM evidence → canonical JSON schema → position-resolved measurement report**
+ 
+(*Currently focused on vLLM; design is framework-agnostic and can be extended to compatible inference runtimes.*)
 
 When debugging determinism, quantization, backend changes, or scheduling effects, end-to-end completion hashes and aggregate quality metrics can tell you that behavior changed without showing where along the prompt the difference first became observable.
 
