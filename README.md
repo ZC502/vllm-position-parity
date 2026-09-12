@@ -16,7 +16,20 @@ It measures what changed.
 
 It does **not** label bugs, infer root causes, apply universal significance thresholds, or recommend optimizations.
 
-> **Measure, don't classify.**
+**Measure, don't classify.**
+
+### Real-world validation
+
+`vllm-position-parity` has been used as the position-resolved measurement layer in real vLLM debugging and quantization validation scenarios:
+
+- **Determinism isolation (#54521)**
+  Used in a five-arm controlled experiment to isolate the root causes of non-deterministic greedy decoding on Qwen3.8-Flash-Next / GB10 (sm_121). The tool measured per-position disagreement across runs with individual fixes applied, confirming that no single patch removed the divergence, and that all four fixes together eliminated it completely.
+  [54521#issuecomment-5600097794](https://github.com/vllm-project/vllm/issues/54521#issuecomment-5600097794)
+
+- **KV quantization parity (#54426)**
+  Used to compare per-position logprob behavior across BF16 / FP8 / NVFP4 KV cache configurations on the same model and hardware. The position-resolved trace helped characterize the prefill regression pattern and separate kernel-level effects from aggregate end-to-end metrics.[54426#issuecomment-5602282777](https://github.com/vllm-project/vllm/issues/54426#issuecomment-5602282777)
+
+All results above were produced and independently verified by community contributors on real production-grade hardware.
 
 ## What v0.1 measures
 
