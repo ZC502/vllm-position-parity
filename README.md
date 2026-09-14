@@ -38,6 +38,8 @@ python tools/adapt_bi_sp_probe.py \
   --out examples/failing.canonical.json \
   --summary-only
 ```
+Omit `--summary-only` to retain the normalized raw per-prompt traces in the canonical output.
+
 The adapter explicitly records:
 - `trace_domain = decode_sampled_logprob`
 - repeat-stability vs batch-composition comparison axes
