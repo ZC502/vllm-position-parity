@@ -35,7 +35,8 @@ independently recomputing all comparison metrics from `runs.*`.
 ```bash
 python tools/adapt_bi_sp_probe.py \
   tests/fixtures/bi_sp_probe/tp4_sp_on_prefix_off_failing.json \
-  --out examples/failing.canonical.json
+  --out examples/failing.canonical.json \
+  --summary-only
 ```
 The adapter explicitly records:
 - `trace_domain = decode_sampled_logprob`
