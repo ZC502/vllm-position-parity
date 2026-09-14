@@ -10,8 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 spec = importlib.util.spec_from_file_location(
-    "adapt_bi_sp_probe", ROOT / "adapt_bi_sp_probe.py"
+    "adapt_bi_sp_probe", ROOT / "tools" / "adapt_bi_sp_probe.py",
 )
+
+FIXTURES = ROOT / "tests" / "fixtures" / "bi_sp_probe"
 mod = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
 spec.loader.exec_module(mod)
