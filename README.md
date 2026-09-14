@@ -4,7 +4,7 @@ Position-resolved behavioral regression measurement for vLLM `prompt_logprobs`.
 
  **native vLLM evidence → canonical JSON schema → position-resolved measurement report**
  
-(*Currently focused on vLLM; design is framework-agnostic and can be extended to compatible inference runtimes.*)
+*Currently focused on vLLM; design is framework-agnostic and can be extended to compatible inference runtimes.*
 
 When debugging determinism, quantization, backend changes, or scheduling effects, end-to-end completion hashes and aggregate quality metrics can tell you that behavior changed without showing where along the prompt the difference first became observable.
 
@@ -17,6 +17,76 @@ It measures what changed.
 It does **not** label bugs, infer root causes, apply universal significance thresholds, or recommend optimizations.
 
 **Measure, don't classify.**
+
+### Quick Start: `bi_sp_probe` Adapter
+
+`tools/adapt_bi_sp_probe.py` converts the batch-composition / repeat-stability
+probe format used in `vllm-project/vllm#56370` into the draft canonical
+`decode_sampled_logprob` evidence format.
+
+The adapter is offline and standard-library only. It does not require vLLM,
+CUDA, or a GPU.
+
+It preserves the external probe as the source of execution evidence while
+independently recomputing all comparison metrics from `runs.*`.
+
+#### Convert a captured probe
+
+```bash
+python tools/adapt_bi_sp_probe.py \
+  tests/fixtures/bi_sp_probe/tp4_sp_on_prefix_off_failing.json \
+  --out examples/failing.canonical.json
+```
+The adapter explicitly records:
+- `trace_domain = decode_sampled_logprob`
+- repeat-stability vs batch-composition comparison axes
+- prompt identity across `bs1_a`, `bsN_a`, `bs1_b`, and `bsN_b`
+- resolved execution metadata when present
+- sampled-token logprob mismatch positions
+- same-token logprob drift
+- different sampled-token positions
+- token-sequence mismatch prompts
+
+The source probe's `verdicts` are not used as measurement input.
+They are retained only as a validation oracle. By default, adaptation fails if
+the independently recomputed metrics do not match the recorded source verdicts.
+
+**Compact report without raw traces**
+```
+python tools/adapt_bi_sp_probe.py \
+  tests/fixtures/bi_sp_probe/tp4_sp_on_prefix_off_failing.json \
+  --out /tmp/failing.summary.json \
+  --summary-only
+```
+`--summary-only` omits the raw per-prompt traces from the output JSON; it does
+not skip JSON output. A compact diagnostic summary is also printed to stdout.
+
+For the included TP=4 / SP-on fixture:
+```
+trace_domain=decode_sampled_logprob arm=Q4_tp4_sp1_triton_noprefix
+bs1_a_vs_bs1_b: compared=1536 lp_mismatch=0 same_token_drift=0 different_token_lp=0 token_id_diff=0 sequence_mismatch_prompts=0
+bsN_a_vs_bsN_b: compared=1536 lp_mismatch=1197 same_token_drift=1090 different_token_lp=107 token_id_diff=107 sequence_mismatch_prompts=11
+bs1_a_vs_bsN_a: compared=1536 lp_mismatch=1528 same_token_drift=1419 different_token_lp=109 token_id_diff=109 sequence_mismatch_prompts=12
+bs1_b_vs_bsN_b: compared=1536 lp_mismatch=1527 same_token_drift=1425 different_token_lp=102 token_id_diff=102 sequence_mismatch_prompts=11
+source_verdict_match=True
+```
+A useful distinction in this trace is that sampled-logprob drift becomes
+observable before sampled-token divergence. For `bsN_a_vs_bsN_b`, 1,197
+positions have different sampled-token logprobs; 1,090 of those still carry the
+same sampled token ID, while 107 positions have different sampled token IDs.
+
+This is a measurement distinction only. The adapter does not infer a root
+cause, classify a run as buggy, or apply a universal significance threshold.
+
+**Run the adapter regression tests**
+```
+python -m unittest discover \
+  -s tests \
+  -p 'test_adapt_bi_sp_probe.py'
+```
+For a clean batch-composition control, disable prefix caching unless prefix
+caching itself is the variable under test. Resolved runtime fields are preserved
+when present; missing fields are not inferred from notes or other runs.
 
 ### Real-world validation
 
