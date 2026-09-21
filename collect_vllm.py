@@ -9,6 +9,7 @@ import os
 import platform
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -199,6 +200,7 @@ def best_effort_resolved_config(llm: Any) -> dict[str, Any]:
     return out
 
 def main() -> int:
+    collect_started = time.perf_counter()
     p = argparse.ArgumentParser(description="Collect repeated vLLM prompt_logprobs into canonical JSON.")
     p.add_argument("--model", required=True)
     g = p.add_mutually_exclusive_group(required=True)
@@ -260,7 +262,9 @@ def main() -> int:
         return 2
 
     # Create LLM before querying CUDA from torch.
+    engine_init_started = time.perf_counter()
     llm = LLM(model=args.model, **llm_kwargs)
+    engine_init_seconds = time.perf_counter() - engine_init_started
     sp_kwargs = {
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
@@ -270,23 +274,27 @@ def main() -> int:
         sp_kwargs["seed"] = args.seed
     sampling_params = SamplingParams(**sp_kwargs)
 
+    generation_started = time.perf_counter()
     if args.execution_mode == "sequential":
         raw_results = []
         for _ in range(args.repeats):
             batch = llm.generate([prompt], sampling_params, use_tqdm=False)
             if len(batch) != 1:
                 raise RuntimeError(f"expected one result, received {len(batch)}")
+    generation_seconds = time.perf_counter() - generation_started
             raw_results.append(batch[0])
     else:
         raw_results = llm.generate([prompt] * args.repeats, sampling_params, use_tqdm=False)
         if len(raw_results) != args.repeats:
             raise RuntimeError(f"expected {args.repeats} results, received {len(raw_results)}")
 
+    normalization_started = time.perf_counter()    
     samples, warnings = [], []
     for i, result in enumerate(raw_results):
         sample, ws = normalize_one_result(result, i)
         samples.append(sample)
         warnings.extend(ws)
+    normalization_seconds = time.perf_counter() - normalization_started
 
     prompt_token_ids = [int(x) for x in raw_results[0].prompt_token_ids]
     for i, result in enumerate(raw_results[1:], 1):
@@ -325,6 +333,14 @@ def main() -> int:
             "token_count": len(prompt_token_ids),
             "token_ids_sha256": sha256_ints(prompt_token_ids),
             "raw_text_stored": False,
+        },
+        "collection_timing": {  
+            "clock": "time.perf_counter",
+            "engine_init_seconds": engine_init_seconds,
+            "generation_seconds": generation_seconds,
+            "normalization_seconds": normalization_seconds,
+            "total_seconds_before_json_write": time.perf_counter() - collect_started,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark.",
         },
         "samples": samples,
         "collection_warnings": warnings,
