@@ -18,6 +18,10 @@ It does **not** label bugs, infer root causes, apply universal significance thre
 
 **Measure, don't classify.**
 
+## 🚀 Use Cases
+* [**KV Cache Quantization Parity (v0.1)**](profiles/README_KV_CACHE_QUANT.md
+) - Evaluate numerical drift and precision drop when enabling FP8/INT8 KV Cache.
+
 ### Real-world validation
 
 `vllm-position-parity` has been used as the position-resolved measurement layer in real vLLM debugging and quantization validation scenarios:
