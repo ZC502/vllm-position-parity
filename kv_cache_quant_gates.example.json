@@ -1,0 +1,18 @@
+{
+  "policy_name": "EXAMPLE_ONLY_replace_with_project_calibrated_policy",
+  "reference_repeat": {
+    "min_top1_agreement_rate": 1.0
+  },
+  "candidate_repeat": {
+    "min_top1_agreement_rate": 1.0
+  },
+  "cross_precision": {
+    "min_modal_top1_agreement_rate": 0.99,
+    "max_p99_abs_logprob_delta": 0.25,
+    "drift_fraction": {
+      "epsilon": 0.05,
+      "max_fraction": 0.05
+    }
+  },
+  "notice": "Example CI policy only. Calibrate from model/backend/hardware-specific baselines; these are not universal quantization thresholds."
+}
