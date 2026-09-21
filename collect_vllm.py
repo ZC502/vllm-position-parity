@@ -281,12 +281,13 @@ def main() -> int:
             batch = llm.generate([prompt], sampling_params, use_tqdm=False)
             if len(batch) != 1:
                 raise RuntimeError(f"expected one result, received {len(batch)}")
-    generation_seconds = time.perf_counter() - generation_started
             raw_results.append(batch[0])
     else:
         raw_results = llm.generate([prompt] * args.repeats, sampling_params, use_tqdm=False)
         if len(raw_results) != args.repeats:
             raise RuntimeError(f"expected {args.repeats} results, received {len(raw_results)}")
+
+    generation_seconds = time.perf_counter() - generation_started
 
     normalization_started = time.perf_counter()    
     samples, warnings = [], []
