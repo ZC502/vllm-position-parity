@@ -1,0 +1,6082 @@
+{
+  "schema": "vllm-position-parity/kv-cache-quant-profile/0.1",
+  "profile_version": "0.1.0",
+  "tool": "vllm-position-parity",
+  "profile": "kv-cache-quant",
+  "measurement_policy": {
+    "cross_precision_bit_exact_required": false,
+    "automatic_root_cause": false,
+    "universal_significance_threshold": null,
+    "quality_gate_source": null,
+    "note": "Cross-precision drift is measured, not presumed erroneous. Self-repeat stability and user-supplied quality gates are reported separately."
+  },
+  "quality_gate_policy": null,
+  "overall_gate_status": "NOT_EVALUATED",
+  "pairs": [
+    {
+      "label": "p00",
+      "prompt_token_count": 14,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 14,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 14,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 14,
+        "cross_modal_top1_known_positions": 13,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.0621794334326226,
+        "p50_abs_forced_logprob_delta": 0.017066001892089844,
+        "p95_abs_forced_logprob_delta": 0.24049043655395455,
+        "p99_abs_forced_logprob_delta": 0.41558160781860315,
+        "max_abs_forced_logprob_delta": 0.4593544006347656,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 5,
+        "fraction_over_drift_epsilon": 0.38461538461538464
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            220,
+            22,
+            15,
+            18,
+            271,
+            14190,
+            11,
+            429,
+            594,
+            537,
+            1290,
+            13,
+            6771,
+            752,
+            1779,
+            1549,
+            13,
+            220,
+            18,
+            22,
+            3039,
+            220,
+            16,
+            24,
+            13,
+            88190,
+            11,
+            220,
+            18,
+            22,
+            9,
+            17,
+            15,
+            374,
+            220,
+            22,
+            19,
+            15,
+            11,
+            773,
+            32256,
+            220,
+            18,
+            22,
+            11,
+            892,
+            374,
+            220,
+            22,
+            19,
+            15,
+            12,
+            18,
+            22,
+            28,
+            22,
+            15,
+            18,
+            13,
+            7414,
+            11,
+            429,
+            594,
+            4396
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            220,
+            22,
+            15,
+            18,
+            271,
+            14190,
+            11,
+            429,
+            594,
+            537,
+            1290,
+            13,
+            6771,
+            752,
+            1779,
+            1549,
+            13,
+            220,
+            18,
+            22,
+            3039,
+            220,
+            16,
+            24,
+            13,
+            88190,
+            11,
+            220,
+            18,
+            22,
+            9,
+            17,
+            15,
+            374,
+            220,
+            22,
+            19,
+            15,
+            11,
+            773,
+            32256,
+            220,
+            18,
+            22,
+            11,
+            892,
+            374,
+            220,
+            22,
+            19,
+            15,
+            12,
+            18,
+            22,
+            28,
+            22,
+            15,
+            18,
+            13,
+            7414,
+            11,
+            429,
+            594,
+            4396
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p00.json",
+          "evidence_bytes": 24182,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p00"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 225.54923741612583,
+            "generation_seconds": 0.6924864810425788,
+            "normalization_seconds": 0.00015899701975286007,
+            "total_seconds_before_json_write": 235.74780024006031,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 14,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p00.json",
+          "evidence_bytes": 24291,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p00"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 225.54734414303675,
+            "generation_seconds": 0.6339985691010952,
+            "normalization_seconds": 0.00017003994435071945,
+            "total_seconds_before_json_write": 235.88649458787404,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 14,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0019729752093553543,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p01",
+      "prompt_token_count": 13,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 13,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 13,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 13,
+        "cross_modal_top1_known_positions": 12,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.01426135967388594,
+        "p50_abs_forced_logprob_delta": 0.004118442535400391,
+        "p95_abs_forced_logprob_delta": 0.057563376426696754,
+        "p99_abs_forced_logprob_delta": 0.06984282970428468,
+        "max_abs_forced_logprob_delta": 0.07291269302368164,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 1,
+        "fraction_over_drift_epsilon": 0.08333333333333333
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            576,
+            729,
+            1265,
+            1896,
+            458,
+            7546,
+            308,
+            438,
+            1946,
+            323,
+            470,
+            279,
+            12159,
+            79683,
+            1372,
+            13,
+            576,
+            79683,
+            8500,
+            374,
+            4512,
+            438,
+            11017,
+            25,
+            279,
+            1156,
+            1378,
+            5109,
+            525,
+            220,
+            15,
+            323,
+            220,
+            16,
+            11,
+            323,
+            1817,
+            17420,
+            1372,
+            374,
+            279,
+            2629,
+            315,
+            279,
+            1378,
+            37746,
+            6174,
+            13,
+            1752,
+            3110,
+            11,
+            279,
+            220,
+            20,
+            339,
+            79683,
+            1372,
+            374,
+            220,
+            20,
+            13,
+            576,
+            729,
+            1265
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            576,
+            729,
+            1265,
+            1896,
+            458,
+            7546,
+            308,
+            438,
+            1946,
+            323,
+            470,
+            279,
+            12159,
+            79683,
+            1372,
+            13,
+            576,
+            79683,
+            8500,
+            374,
+            4512,
+            438,
+            11017,
+            25,
+            279,
+            1156,
+            1378,
+            5109,
+            525,
+            220,
+            15,
+            323,
+            220,
+            16,
+            11,
+            323,
+            1817,
+            17420,
+            1372,
+            374,
+            279,
+            2629,
+            315,
+            279,
+            1378,
+            37746,
+            6174,
+            13,
+            1752,
+            3110,
+            11,
+            279,
+            220,
+            20,
+            339,
+            79683,
+            1372,
+            374,
+            220,
+            20,
+            13,
+            576,
+            729,
+            1265
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p01.json",
+          "evidence_bytes": 22165,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p01"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.715057459892705,
+            "generation_seconds": 0.6533122679684311,
+            "normalization_seconds": 0.00013907020911574364,
+            "total_seconds_before_json_write": 29.06511869491078,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 13,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p01.json",
+          "evidence_bytes": 22337,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p01"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 35.51120443199761,
+            "generation_seconds": 0.6224188208580017,
+            "normalization_seconds": 0.00016201194375753403,
+            "total_seconds_before_json_write": 43.27197918086313,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 13,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0013546077534556389,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p02",
+      "prompt_token_count": 25,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 25,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 25,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 25,
+        "cross_modal_top1_known_positions": 24,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.029016796897243086,
+        "p50_abs_forced_logprob_delta": 0.0019019544124603271,
+        "p95_abs_forced_logprob_delta": 0.11511520445346826,
+        "p99_abs_forced_logprob_delta": 0.16695279359817503,
+        "max_abs_forced_logprob_delta": 0.18116092681884766,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 6,
+        "fraction_over_drift_epsilon": 0.25
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            2014,
+            1477,
+            279,
+            5461,
+            4628,
+            11,
+            582,
+            1184,
+            311,
+            21749,
+            279,
+            2790,
+            6010,
+            30696,
+            553,
+            279,
+            2790,
+            882,
+            4429,
+            13,
+            576,
+            2790,
+            6010,
+            374,
+            220,
+            16,
+            23,
+            15,
+            13136,
+            323,
+            279,
+            2790,
+            882,
+            374,
+            220,
+            17,
+            13,
+            20,
+            4115,
+            13,
+            2055,
+            11,
+            279,
+            5461,
+            4628,
+            374,
+            220,
+            16,
+            23,
+            15,
+            17779,
+            553,
+            220,
+            17,
+            13,
+            20,
+            13,
+            6771,
+            752,
+            11047,
+            429,
+            13,
+            220,
+            16
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            2014,
+            1477,
+            279,
+            5461,
+            4628,
+            11,
+            582,
+            1184,
+            311,
+            21749,
+            279,
+            2790,
+            6010,
+            30696,
+            553,
+            279,
+            2790,
+            882,
+            4429,
+            13,
+            576,
+            2790,
+            6010,
+            374,
+            220,
+            16,
+            23,
+            15,
+            13136,
+            323,
+            279,
+            2790,
+            882,
+            374,
+            220,
+            17,
+            13,
+            20,
+            4115,
+            13,
+            2055,
+            11,
+            279,
+            5461,
+            4628,
+            374,
+            220,
+            16,
+            23,
+            15,
+            17779,
+            553,
+            220,
+            17,
+            13,
+            20,
+            13,
+            6771,
+            752,
+            11047,
+            429,
+            13,
+            220,
+            16
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p02.json",
+          "evidence_bytes": 38404,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p02"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.45024435594678,
+            "generation_seconds": 0.6674136130604893,
+            "normalization_seconds": 0.00022331788204610348,
+            "total_seconds_before_json_write": 28.04325494193472,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 25,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p02.json",
+          "evidence_bytes": 38478,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p02"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 22.49075014097616,
+            "generation_seconds": 0.6428548649419099,
+            "normalization_seconds": 0.00022611208260059357,
+            "total_seconds_before_json_write": 29.921391479903832,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 25,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0020548817701637745,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p03",
+      "prompt_token_count": 12,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 12,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 12,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 12,
+        "cross_modal_top1_known_positions": 11,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.08682081916115501,
+        "p50_abs_forced_logprob_delta": 0.08887195587158203,
+        "p95_abs_forced_logprob_delta": 0.15355253219604492,
+        "p99_abs_forced_logprob_delta": 0.17570714950561525,
+        "max_abs_forced_logprob_delta": 0.1812458038330078,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 9,
+        "fraction_over_drift_epsilon": 0.8181818181818182
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            481,
+            30317,
+            398,
+            1858,
+            198,
+            5365,
+            198,
+            5365,
+            198,
+            82,
+            1116,
+            321,
+            300,
+            26695,
+            16,
+            24,
+            23,
+            15,
+            198,
+            15,
+            18,
+            13,
+            15,
+            18,
+            13,
+            17,
+            15,
+            17,
+            15,
+            198,
+            37332,
+            9965,
+            198,
+            48963,
+            6022,
+            198,
+            9217,
+            198,
+            9217,
+            198,
+            56724,
+            198,
+            840,
+            20772,
+            304,
+            1378,
+            22870,
+            3170,
+            7868,
+            2711,
+            7460,
+            10615,
+            1946,
+            624,
+            17,
+            198,
+            9830,
+            11253,
+            198,
+            11736,
+            5181,
+            32640,
+            198,
+            11736
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            481,
+            30317,
+            398,
+            1858,
+            198,
+            5365,
+            198,
+            5365,
+            198,
+            82,
+            1116,
+            321,
+            300,
+            26695,
+            16,
+            24,
+            23,
+            15,
+            198,
+            15,
+            18,
+            13,
+            15,
+            18,
+            13,
+            17,
+            15,
+            17,
+            15,
+            198,
+            37332,
+            9965,
+            198,
+            48963,
+            6022,
+            198,
+            9217,
+            198,
+            9217,
+            198,
+            56724,
+            198,
+            840,
+            20772,
+            304,
+            1378,
+            22870,
+            3170,
+            7868,
+            2711,
+            7460,
+            10615,
+            1946,
+            624,
+            17,
+            198,
+            9830,
+            11253,
+            198,
+            11736,
+            5181,
+            32640,
+            198,
+            11736
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p03.json",
+          "evidence_bytes": 21431,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p03"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.006096991943195,
+            "generation_seconds": 0.683603327954188,
+            "normalization_seconds": 0.00015251897275447845,
+            "total_seconds_before_json_write": 28.678565809037536,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 12,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p03.json",
+          "evidence_bytes": 21324,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p03"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.974158300086856,
+            "generation_seconds": 0.6327473109122366,
+            "normalization_seconds": 0.00013449997641146183,
+            "total_seconds_before_json_write": 29.87044491386041,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 12,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0012593339197337627,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p04",
+      "prompt_token_count": 24,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 24,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 24,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 24,
+        "cross_modal_top1_known_positions": 23,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.0127654773409038,
+        "p50_abs_forced_logprob_delta": 0.0004715770483016968,
+        "p95_abs_forced_logprob_delta": 0.04999609887599941,
+        "p99_abs_forced_logprob_delta": 0.15495065689086931,
+        "max_abs_forced_logprob_delta": 0.18362998962402344,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 2,
+        "fraction_over_drift_epsilon": 0.08695652173913043
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            220,
+            18,
+            19,
+            11,
+            220,
+            20,
+            20,
+            11,
+            220,
+            23,
+            24,
+            11,
+            220,
+            16,
+            19,
+            19,
+            11,
+            220,
+            17,
+            18,
+            18,
+            11,
+            220,
+            18,
+            22,
+            22,
+            11,
+            220,
+            21,
+            16,
+            15,
+            11,
+            220,
+            24,
+            23,
+            22,
+            11,
+            220,
+            16,
+            20,
+            24,
+            22,
+            11,
+            220,
+            17,
+            20,
+            23,
+            19,
+            11,
+            220,
+            19,
+            16,
+            23,
+            16,
+            11,
+            220,
+            21,
+            22,
+            21,
+            20,
+            11,
+            220,
+            16,
+            15
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            220,
+            18,
+            19,
+            11,
+            220,
+            20,
+            20,
+            11,
+            220,
+            23,
+            24,
+            11,
+            220,
+            16,
+            19,
+            19,
+            11,
+            220,
+            17,
+            18,
+            18,
+            11,
+            220,
+            18,
+            22,
+            22,
+            11,
+            220,
+            21,
+            16,
+            15,
+            11,
+            220,
+            24,
+            23,
+            22,
+            11,
+            220,
+            16,
+            20,
+            24,
+            22,
+            11,
+            220,
+            17,
+            20,
+            23,
+            19,
+            11,
+            220,
+            19,
+            16,
+            23,
+            16,
+            11,
+            220,
+            21,
+            22,
+            21,
+            20,
+            11,
+            220,
+            16,
+            15
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p04.json",
+          "evidence_bytes": 36571,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p04"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.4831494030077,
+            "generation_seconds": 0.7558651098515838,
+            "normalization_seconds": 0.0002974248491227627,
+            "total_seconds_before_json_write": 28.328893857076764,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 24,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p04.json",
+          "evidence_bytes": 36748,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p04"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 22.911902722902596,
+            "generation_seconds": 0.6300318790599704,
+            "normalization_seconds": 0.00019820989109575748,
+            "total_seconds_before_json_write": 30.58834305498749,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 24,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0023221191950142384,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p05",
+      "prompt_token_count": 22,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 22,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 22,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 22,
+        "cross_modal_top1_known_positions": 21,
+        "cross_modal_top1_agreement_rate": 0.9523809523809523,
+        "positions_with_modal_top1_mismatch": 1,
+        "mean_abs_forced_logprob_delta": 0.022163615850288244,
+        "p50_abs_forced_logprob_delta": 0.006020665168762207,
+        "p95_abs_forced_logprob_delta": 0.09485077857971191,
+        "p99_abs_forced_logprob_delta": 0.10205082893371584,
+        "max_abs_forced_logprob_delta": 0.1038508415222168,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 3,
+        "fraction_over_drift_epsilon": 0.14285714285714285
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            7281,
+            11,
+            1246,
+            653,
+            358,
+            1477,
+            279,
+            31805,
+            315,
+            264,
+            729,
+            1667,
+            279,
+            3930,
+            7271,
+            11,
+            323,
+            1128,
+            374,
+            279,
+            31805,
+            315,
+            220,
+            17,
+            87,
+            61,
+            17,
+            488,
+            220,
+            18,
+            87,
+            481,
+            220,
+            19,
+            30,
+            22406,
+            11,
+            646,
+            498,
+            10339,
+            279,
+            7286,
+            315,
+            5435,
+            7813,
+            304,
+            82668,
+            11,
+            323,
+            1246,
+            653,
+            358,
+            1477,
+            279,
+            31805,
+            315,
+            264,
+            729,
+            1667,
+            279,
+            1985,
+            5912,
+            1939,
+            10061
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            7281,
+            11,
+            1246,
+            653,
+            358,
+            1477,
+            279,
+            31805,
+            315,
+            264,
+            729,
+            1667,
+            279,
+            3930,
+            7271,
+            11,
+            323,
+            1128,
+            374,
+            279,
+            31805,
+            315,
+            220,
+            17,
+            87,
+            61,
+            17,
+            488,
+            220,
+            18,
+            87,
+            481,
+            220,
+            19,
+            30,
+            22406,
+            11,
+            646,
+            498,
+            10339,
+            279,
+            7286,
+            315,
+            5435,
+            7813,
+            304,
+            82668,
+            11,
+            323,
+            1246,
+            653,
+            358,
+            1477,
+            279,
+            31805,
+            315,
+            264,
+            729,
+            1667,
+            279,
+            1985,
+            5912,
+            1939,
+            10061
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p05.json",
+          "evidence_bytes": 34100,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p05"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 19.622745963046327,
+            "generation_seconds": 0.6807499779388309,
+            "normalization_seconds": 0.00020786700770258904,
+            "total_seconds_before_json_write": 27.539261647034436,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 22,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p05.json",
+          "evidence_bytes": 34260,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p05"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.839807752985507,
+            "generation_seconds": 0.6158064790070057,
+            "normalization_seconds": 0.00018902402371168137,
+            "total_seconds_before_json_write": 29.32540623191744,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 22,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.001805790700018406,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p06",
+      "prompt_token_count": 22,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 22,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 22,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 22,
+        "cross_modal_top1_known_positions": 21,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.020462622178413204,
+        "p50_abs_forced_logprob_delta": 0.0041779205203056335,
+        "p95_abs_forced_logprob_delta": 0.09278011322021484,
+        "p99_abs_forced_logprob_delta": 0.11268749237060549,
+        "max_abs_forced_logprob_delta": 0.11766433715820312,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 4,
+        "fraction_over_drift_epsilon": 0.19047619047619047
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            576,
+            4718,
+            1265,
+            387,
+            304,
+            264,
+            914,
+            3561,
+            323,
+            1265,
+            537,
+            6644,
+            894,
+            4960,
+            5766,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            2697,
+            323,
+            10277,
+            23126,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            304,
+            264,
+            914,
+            3561,
+            323,
+            1265,
+            537,
+            6644,
+            894,
+            4960,
+            5766,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            2697,
+            323,
+            10277,
+            23126,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            304,
+            264,
+            914,
+            3561,
+            323,
+            1265,
+            537,
+            6644,
+            894,
+            4960
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            576,
+            4718,
+            1265,
+            387,
+            304,
+            264,
+            914,
+            3561,
+            323,
+            1265,
+            537,
+            6644,
+            894,
+            4960,
+            5766,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            2697,
+            323,
+            10277,
+            23126,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            304,
+            264,
+            914,
+            3561,
+            323,
+            1265,
+            537,
+            6644,
+            894,
+            4960,
+            5766,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            2697,
+            323,
+            10277,
+            23126,
+            13,
+            576,
+            4718,
+            1265,
+            387,
+            304,
+            264,
+            914,
+            3561,
+            323,
+            1265,
+            537,
+            6644,
+            894,
+            4960
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p06.json",
+          "evidence_bytes": 34581,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p06"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 19.733457321068272,
+            "generation_seconds": 0.6630078568123281,
+            "normalization_seconds": 0.0002113149967044592,
+            "total_seconds_before_json_write": 27.514924698974937,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 22,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p06.json",
+          "evidence_bytes": 34748,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p06"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 22.25705219199881,
+            "generation_seconds": 0.6249563230667263,
+            "normalization_seconds": 0.00021915091201663017,
+            "total_seconds_before_json_write": 29.742487342096865,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 22,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0018379329703748226,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p07",
+      "prompt_token_count": 23,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 23,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 23,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 23,
+        "cross_modal_top1_known_positions": 22,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.021727765785974705,
+        "p50_abs_forced_logprob_delta": 0.003220073878765106,
+        "p95_abs_forced_logprob_delta": 0.11835145950317379,
+        "p99_abs_forced_logprob_delta": 0.12151000738143922,
+        "max_abs_forced_logprob_delta": 0.12155652046203613,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 4,
+        "fraction_over_drift_epsilon": 0.18181818181818182
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            2014,
+            1477,
+            279,
+            2790,
+            1372,
+            315,
+            20332,
+            304,
+            279,
+            3745,
+            11,
+            582,
+            1184,
+            311,
+            912,
+            279,
+            1372,
+            315,
+            2518,
+            11,
+            6303,
+            11,
+            323,
+            6176,
+            20332,
+            3786,
+            382,
+            6033,
+            20332,
+            25,
+            220,
+            19,
+            2303,
+            10331,
+            20332,
+            25,
+            220,
+            20,
+            2303,
+            19576,
+            20332,
+            25,
+            220,
+            21,
+            18611,
+            7595,
+            1372,
+            315,
+            20332,
+            284,
+            220,
+            19,
+            488,
+            220,
+            20,
+            488,
+            220,
+            21,
+            284,
+            220,
+            16,
+            20,
+            271,
+            4416
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            2014,
+            1477,
+            279,
+            2790,
+            1372,
+            315,
+            20332,
+            304,
+            279,
+            3745,
+            11,
+            582,
+            1184,
+            311,
+            912,
+            279,
+            1372,
+            315,
+            2518,
+            11,
+            6303,
+            11,
+            323,
+            6176,
+            20332,
+            3786,
+            382,
+            6033,
+            20332,
+            25,
+            220,
+            19,
+            2303,
+            10331,
+            20332,
+            25,
+            220,
+            20,
+            2303,
+            19576,
+            20332,
+            25,
+            220,
+            21,
+            18611,
+            7595,
+            1372,
+            315,
+            20332,
+            284,
+            220,
+            19,
+            488,
+            220,
+            20,
+            488,
+            220,
+            21,
+            284,
+            220,
+            16,
+            20,
+            271,
+            4416
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p07.json",
+          "evidence_bytes": 35741,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p07"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.123272030148655,
+            "generation_seconds": 0.6755583919584751,
+            "normalization_seconds": 0.00022779894061386585,
+            "total_seconds_before_json_write": 28.18659269809723,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 23,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p07.json",
+          "evidence_bytes": 35888,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p07"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.811868099030107,
+            "generation_seconds": 0.584165524924174,
+            "normalization_seconds": 0.0002110500354319811,
+            "total_seconds_before_json_write": 29.28726125601679,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 23,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0019438676536083221,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p08",
+      "prompt_token_count": 14,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 14,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 14,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 14,
+        "cross_modal_top1_known_positions": 13,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.033156255421300344,
+        "p50_abs_forced_logprob_delta": 0.028437137603759766,
+        "p95_abs_forced_logprob_delta": 0.09582538604736321,
+        "p99_abs_forced_logprob_delta": 0.12425388336181635,
+        "max_abs_forced_logprob_delta": 0.1313610076904297,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 3,
+        "fraction_over_drift_epsilon": 0.23076923076923078
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            576,
+            1140,
+            1231,
+            6644,
+            894,
+            821,
+            4494,
+            11,
+            2670,
+            24034,
+            11469,
+            323,
+            57514,
+            13,
+            576,
+            7681,
+            454,
+            1693,
+            1265,
+            387,
+            2814,
+            304,
+            264,
+            1616,
+            429,
+            279,
+            4024,
+            1973,
+            315,
+            279,
+            5424,
+            374,
+            33583,
+            11,
+            323,
+            279,
+            7681,
+            98984,
+            1140,
+            1265,
+            537,
+            6644,
+            894,
+            42328,
+            13,
+            576,
+            7681,
+            454,
+            1693,
+            1265,
+            387,
+            2814,
+            304,
+            264,
+            1616,
+            429,
+            374,
+            11050,
+            369,
+            3460,
+            11469,
+            13,
+            576,
+            7681
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            576,
+            1140,
+            1231,
+            6644,
+            894,
+            821,
+            4494,
+            11,
+            2670,
+            24034,
+            11469,
+            323,
+            57514,
+            13,
+            576,
+            7681,
+            454,
+            1693,
+            1265,
+            387,
+            2814,
+            304,
+            264,
+            1616,
+            429,
+            279,
+            4024,
+            1973,
+            315,
+            279,
+            5424,
+            374,
+            33583,
+            11,
+            323,
+            279,
+            7681,
+            98984,
+            1140,
+            1265,
+            537,
+            6644,
+            894,
+            42328,
+            13,
+            576,
+            7681,
+            454,
+            1693,
+            1265,
+            387,
+            2814,
+            304,
+            264,
+            1616,
+            429,
+            374,
+            11050,
+            369,
+            3460,
+            11469,
+            13,
+            576,
+            7681
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p08.json",
+          "evidence_bytes": 24245,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p08"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.513922240119427,
+            "generation_seconds": 0.6292567839846015,
+            "normalization_seconds": 0.00014331098645925522,
+            "total_seconds_before_json_write": 28.21907707490027,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 14,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p08.json",
+          "evidence_bytes": 24381,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p08"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.9178559218999,
+            "generation_seconds": 0.5938353741075844,
+            "normalization_seconds": 0.00014375988394021988,
+            "total_seconds_before_json_write": 29.725712740095332,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 14,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0013575339689850807,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p09",
+      "prompt_token_count": 10,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 10,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 10,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 10,
+        "cross_modal_top1_known_positions": 9,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.038262526194254555,
+        "p50_abs_forced_logprob_delta": 0.02132272720336914,
+        "p95_abs_forced_logprob_delta": 0.10253303050994873,
+        "p99_abs_forced_logprob_delta": 0.10752147197723388,
+        "max_abs_forced_logprob_delta": 0.10876858234405518,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 3,
+        "fraction_over_drift_epsilon": 0.3333333333333333
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            576,
+            7015,
+            374,
+            47925,
+            13,
+            576,
+            9315,
+            374,
+            220,
+            17,
+            15,
+            12348,
+            61347,
+            13,
+            576,
+            9956,
+            374,
+            40342,
+            504,
+            279,
+            9806,
+            13,
+            576,
+            3720,
+            374,
+            9058,
+            13,
+            576,
+            12884,
+            374,
+            6303,
+            13,
+            576,
+            29514,
+            525,
+            537,
+            3042,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            65938,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            94769,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            9255,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            4017,
+            13,
+            576,
+            3720
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            576,
+            7015,
+            374,
+            47925,
+            13,
+            576,
+            9315,
+            374,
+            220,
+            17,
+            15,
+            12348,
+            61347,
+            13,
+            576,
+            9956,
+            374,
+            40342,
+            504,
+            279,
+            9806,
+            13,
+            576,
+            3720,
+            374,
+            9058,
+            13,
+            576,
+            12884,
+            374,
+            6303,
+            13,
+            576,
+            29514,
+            525,
+            537,
+            3042,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            65938,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            94769,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            9255,
+            13,
+            576,
+            3720,
+            374,
+            537,
+            4017,
+            13,
+            576,
+            3720
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p09.json",
+          "evidence_bytes": 17984,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p09"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 19.322652922011912,
+            "generation_seconds": 0.6732641439884901,
+            "normalization_seconds": 0.00011871615424752235,
+            "total_seconds_before_json_write": 26.920699413865805,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 10,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p09.json",
+          "evidence_bytes": 18122,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p09"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.860735503025353,
+            "generation_seconds": 0.5953906020149589,
+            "normalization_seconds": 0.00013639801181852818,
+            "total_seconds_before_json_write": 29.46549970819615,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 10,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.001096739899367094,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p10",
+      "prompt_token_count": 13,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 13,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 13,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 13,
+        "cross_modal_top1_known_positions": 12,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.02126503052810828,
+        "p50_abs_forced_logprob_delta": 0.005464810878038406,
+        "p95_abs_forced_logprob_delta": 0.07842311859130859,
+        "p99_abs_forced_logprob_delta": 0.08624813079833984,
+        "max_abs_forced_logprob_delta": 0.08820438385009766,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 2,
+        "fraction_over_drift_epsilon": 0.16666666666666666
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            576,
+            26656,
+            2326,
+            26798,
+            57020,
+            374,
+            264,
+            1882,
+            1483,
+            304,
+            279,
+            47025,
+            7779,
+            24572,
+            320,
+            49896,
+            8,
+            311,
+            5695,
+            264,
+            3633,
+            1948,
+            264,
+            2943,
+            323,
+            264,
+            3538,
+            13,
+            1084,
+            17601,
+            2326,
+            7354,
+            25,
+            279,
+            2943,
+            12672,
+            973,
+            264,
+            3633,
+            553,
+            11628,
+            264,
+            61694,
+            320,
+            82,
+            52787,
+            8,
+            10151,
+            448,
+            264,
+            8500,
+            1372,
+            11,
+            279,
+            3538,
+            30580,
+            448,
+            264,
+            61694,
+            12,
+            4032,
+            320,
+            82,
+            52787
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            576,
+            26656,
+            2326,
+            26798,
+            57020,
+            374,
+            264,
+            1882,
+            1483,
+            304,
+            279,
+            47025,
+            7779,
+            24572,
+            320,
+            49896,
+            8,
+            311,
+            5695,
+            264,
+            3633,
+            1948,
+            264,
+            2943,
+            323,
+            264,
+            3538,
+            13,
+            1084,
+            17601,
+            2326,
+            7354,
+            25,
+            279,
+            2943,
+            12672,
+            973,
+            264,
+            3633,
+            553,
+            11628,
+            264,
+            61694,
+            320,
+            82,
+            52787,
+            8,
+            10151,
+            448,
+            264,
+            8500,
+            1372,
+            11,
+            279,
+            3538,
+            30580,
+            448,
+            264,
+            61694,
+            12,
+            4032,
+            320,
+            82,
+            52787
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p10.json",
+          "evidence_bytes": 22229,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p10"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.07611120096408,
+            "generation_seconds": 0.6273017621133476,
+            "normalization_seconds": 0.0001375910360366106,
+            "total_seconds_before_json_write": 27.76288166991435,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 13,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p10.json",
+          "evidence_bytes": 22369,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p10"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.817038531182334,
+            "generation_seconds": 0.6138107359874994,
+            "normalization_seconds": 0.00014240317977964878,
+            "total_seconds_before_json_write": 29.601985840126872,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 13,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.001291126012802124,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p11",
+      "prompt_token_count": 14,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 14,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 14,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 14,
+        "cross_modal_top1_known_positions": 13,
+        "cross_modal_top1_agreement_rate": 0.9230769230769231,
+        "positions_with_modal_top1_mismatch": 1,
+        "mean_abs_forced_logprob_delta": 0.02894933005938163,
+        "p50_abs_forced_logprob_delta": 0.01795773208141327,
+        "p95_abs_forced_logprob_delta": 0.08351478576660151,
+        "p99_abs_forced_logprob_delta": 0.09671508789062497,
+        "max_abs_forced_logprob_delta": 0.10001516342163086,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 3,
+        "fraction_over_drift_epsilon": 0.23076923076923078
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            3555,
+            374,
+            279,
+            897,
+            315,
+            856,
+            1939,
+            1249,
+            11625,
+            279,
+            23606,
+            220,
+            18,
+            87,
+            488,
+            220,
+            22,
+            284,
+            220,
+            18,
+            16,
+            11,
+            582,
+            1184,
+            311,
+            42123,
+            856,
+            13,
+            5512,
+            11,
+            32256,
+            220,
+            22,
+            504,
+            2176,
+            11067,
+            311,
+            633,
+            9279,
+            315,
+            279,
+            6783,
+            4647,
+            389,
+            279,
+            2115,
+            3108,
+            13,
+            1096,
+            6696,
+            601,
+            220,
+            18,
+            87,
+            284,
+            220,
+            18,
+            16,
+            481,
+            220,
+            22,
+            11,
+            892,
+            15491
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            3555,
+            374,
+            279,
+            897,
+            315,
+            856,
+            1939,
+            1249,
+            11625,
+            279,
+            23606,
+            220,
+            18,
+            87,
+            488,
+            220,
+            22,
+            284,
+            220,
+            18,
+            16,
+            11,
+            582,
+            1184,
+            311,
+            42123,
+            856,
+            13,
+            5512,
+            11,
+            32256,
+            220,
+            22,
+            504,
+            2176,
+            11067,
+            311,
+            633,
+            9279,
+            315,
+            279,
+            6783,
+            4647,
+            389,
+            279,
+            2115,
+            3108,
+            13,
+            1096,
+            6696,
+            601,
+            220,
+            18,
+            87,
+            284,
+            220,
+            18,
+            16,
+            481,
+            220,
+            22,
+            11,
+            892,
+            15491
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p11.json",
+          "evidence_bytes": 23397,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p11"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 19.453889269847423,
+            "generation_seconds": 0.6423174559604377,
+            "normalization_seconds": 0.0001581059768795967,
+            "total_seconds_before_json_write": 27.018836088012904,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 14,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p11.json",
+          "evidence_bytes": 23547,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p11"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 22.458926999010146,
+            "generation_seconds": 0.5985536051448435,
+            "normalization_seconds": 0.00015699397772550583,
+            "total_seconds_before_json_write": 30.179660300025716,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 14,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.001348166260868311,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p12",
+      "prompt_token_count": 10,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 10,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 10,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 10,
+        "cross_modal_top1_known_positions": 9,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.08224089209559476,
+        "p50_abs_forced_logprob_delta": 0.032155513763427734,
+        "p95_abs_forced_logprob_delta": 0.3063695907592772,
+        "p99_abs_forced_logprob_delta": 0.4286819076538086,
+        "max_abs_forced_logprob_delta": 0.4592599868774414,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 4,
+        "fraction_over_drift_epsilon": 0.4444444444444444
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            576,
+            1156,
+            8063,
+            10250,
+            5109,
+            525,
+            220,
+            17,
+            11,
+            220,
+            18,
+            11,
+            220,
+            20,
+            11,
+            220,
+            22,
+            11,
+            220,
+            16,
+            16,
+            11,
+            220,
+            16,
+            18,
+            11,
+            220,
+            16,
+            22,
+            11,
+            220,
+            16,
+            24,
+            13,
+            6771,
+            752,
+            1779,
+            421,
+            358,
+            2776,
+            4396,
+            13,
+            7414,
+            11,
+            220,
+            17,
+            374,
+            279,
+            1156,
+            10250,
+            11,
+            1221,
+            220,
+            18,
+            11,
+            220,
+            20,
+            11,
+            220,
+            22,
+            11,
+            220,
+            16,
+            16
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            576,
+            1156,
+            8063,
+            10250,
+            5109,
+            525,
+            220,
+            17,
+            11,
+            220,
+            18,
+            11,
+            220,
+            20,
+            11,
+            220,
+            22,
+            11,
+            220,
+            16,
+            16,
+            11,
+            220,
+            16,
+            18,
+            11,
+            220,
+            16,
+            22,
+            11,
+            220,
+            16,
+            24,
+            13,
+            6771,
+            752,
+            1779,
+            421,
+            358,
+            2776,
+            4396,
+            13,
+            7414,
+            11,
+            220,
+            17,
+            374,
+            279,
+            1156,
+            10250,
+            11,
+            1221,
+            220,
+            18,
+            11,
+            220,
+            20,
+            11,
+            220,
+            22,
+            11,
+            220,
+            16,
+            16
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p12.json",
+          "evidence_bytes": 17983,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p12"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.03501931997016,
+            "generation_seconds": 0.6577137769199908,
+            "normalization_seconds": 0.00012019299902021885,
+            "total_seconds_before_json_write": 28.7163929999806,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 10,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p12.json",
+          "evidence_bytes": 18118,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p12"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 22.1921683200635,
+            "generation_seconds": 0.5757075380533934,
+            "normalization_seconds": 0.00035915407352149487,
+            "total_seconds_before_json_write": 29.56878059403971,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 10,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0011142338626086712,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p13",
+      "prompt_token_count": 11,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 11,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 11,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 11,
+        "cross_modal_top1_known_positions": 10,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.030853164196014405,
+        "p50_abs_forced_logprob_delta": 0.014586806297302246,
+        "p95_abs_forced_logprob_delta": 0.09255633354187005,
+        "p99_abs_forced_logprob_delta": 0.11221396446228028,
+        "max_abs_forced_logprob_delta": 0.11712837219238281,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 2,
+        "fraction_over_drift_epsilon": 0.2
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            481,
+            3406,
+            6215,
+            198,
+            3838,
+            1558,
+            7870,
+            21920,
+            13069,
+            21129,
+            504,
+            279,
+            2115,
+            1965,
+            5267,
+            2589,
+            553,
+            29098,
+            42300,
+            198,
+            12116,
+            498,
+            3512,
+            5085,
+            4172,
+            369,
+            264,
+            4238,
+            498,
+            1513,
+            944,
+            1414,
+            30,
+            5692,
+            594,
+            1246,
+            311,
+            10265,
+            1105,
+            624,
+            23824,
+            4398,
+            198,
+            16,
+            17,
+            37243,
+            198,
+            14470,
+            198,
+            50,
+            661,
+            71,
+            585,
+            277,
+            730,
+            198,
+            11,
+            4741,
+            4377,
+            28383,
+            518,
+            467,
+            48789,
+            320
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            481,
+            3406,
+            6215,
+            198,
+            3838,
+            1558,
+            7870,
+            21920,
+            13069,
+            21129,
+            504,
+            279,
+            2115,
+            1965,
+            5267,
+            2589,
+            553,
+            29098,
+            42300,
+            198,
+            12116,
+            498,
+            3512,
+            5085,
+            4172,
+            369,
+            264,
+            4238,
+            498,
+            1513,
+            944,
+            1414,
+            911,
+            30,
+            29098,
+            42300,
+            3643,
+            432,
+            4285,
+            311,
+            1477,
+            4780,
+            498,
+            4172,
+            1075,
+            311,
+            1414,
+            624,
+            23824,
+            4398,
+            198,
+            16,
+            15,
+            37243,
+            198,
+            14470,
+            198,
+            50,
+            661,
+            71,
+            585,
+            277,
+            730,
+            198
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": false,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": 32,
+          "aligned_token_agreement_rate": 0.5
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p13.json",
+          "evidence_bytes": 19880,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p13"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.389219210948795,
+            "generation_seconds": 0.6632569618523121,
+            "normalization_seconds": 0.0001365018542855978,
+            "total_seconds_before_json_write": 29.09527051402256,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 11,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p13.json",
+          "evidence_bytes": 20022,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p13"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.77023117011413,
+            "generation_seconds": 0.698678300017491,
+            "normalization_seconds": 0.0001582200638949871,
+            "total_seconds_before_json_write": 29.448666665004566,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 11,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.00122126005589962,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p14",
+      "prompt_token_count": 22,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 22,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 22,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 22,
+        "cross_modal_top1_known_positions": 21,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.01865931904120814,
+        "p50_abs_forced_logprob_delta": 0.004655405879020691,
+        "p95_abs_forced_logprob_delta": 0.07784610986709595,
+        "p99_abs_forced_logprob_delta": 0.1405646443367005,
+        "max_abs_forced_logprob_delta": 0.15624427795410156,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 3,
+        "fraction_over_drift_epsilon": 0.14285714285714285
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            5005,
+            11,
+            1477,
+            279,
+            2629,
+            315,
+            279,
+            1156,
+            2326,
+            5424,
+            323,
+            279,
+            2629,
+            315,
+            279,
+            1537,
+            2326,
+            5424,
+            13,
+            3555,
+            374,
+            279,
+            2790,
+            2629,
+            315,
+            1493,
+            1378,
+            36398,
+            1939,
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311,
+            1795,
+            264,
+            2421,
+            7354,
+            13,
+            5512,
+            11,
+            582,
+            1184,
+            311,
+            3378,
+            279,
+            2661,
+            1140,
+            315,
+            5109,
+            304,
+            35388,
+            1973,
+            13,
+            5005,
+            11,
+            582,
+            1184,
+            311,
+            11047,
+            279
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            5005,
+            11,
+            1477,
+            279,
+            2629,
+            315,
+            279,
+            1156,
+            2326,
+            5424,
+            323,
+            279,
+            2629,
+            315,
+            279,
+            1537,
+            2326,
+            5424,
+            13,
+            3555,
+            374,
+            279,
+            2790,
+            2629,
+            315,
+            1493,
+            1378,
+            36398,
+            1939,
+            1249,
+            11625,
+            419,
+            3491,
+            11,
+            582,
+            1184,
+            311,
+            1795,
+            264,
+            2421,
+            7354,
+            13,
+            5512,
+            11,
+            582,
+            1184,
+            311,
+            3378,
+            279,
+            2661,
+            1140,
+            315,
+            5109,
+            304,
+            35388,
+            1973,
+            13,
+            5005,
+            11,
+            582,
+            1184,
+            311,
+            11047,
+            279
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": true,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": null,
+          "aligned_token_agreement_rate": 1.0
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p14.json",
+          "evidence_bytes": 34358,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p14"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.042254444910213,
+            "generation_seconds": 0.6515642651356757,
+            "normalization_seconds": 0.00019852886907756329,
+            "total_seconds_before_json_write": 28.577543531078845,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 22,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p14.json",
+          "evidence_bytes": 34474,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p14"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 22.069767861859873,
+            "generation_seconds": 0.588955809129402,
+            "normalization_seconds": 0.000235626008361578,
+            "total_seconds_before_json_write": 29.645392971113324,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 22,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0018511689268052578,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    },
+    {
+      "label": "p15",
+      "prompt_token_count": 27,
+      "reference_kv_cache_dtype": "auto",
+      "candidate_kv_cache_dtype": "auto",
+      "reference_repeat": {
+        "repeat_count": 2,
+        "position_count": 27,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "candidate_repeat": {
+        "repeat_count": 2,
+        "position_count": 27,
+        "min_top1_agreement_rate": 1.0,
+        "mean_top1_agreement_rate": 1.0,
+        "positions_with_top1_disagreement": 0,
+        "max_forced_logprob_spread": 0.0,
+        "p99_forced_logprob_spread": 0.0
+      },
+      "cross_precision": {
+        "common_position_count": 27,
+        "cross_modal_top1_known_positions": 26,
+        "cross_modal_top1_agreement_rate": 1.0,
+        "positions_with_modal_top1_mismatch": 0,
+        "mean_abs_forced_logprob_delta": 0.04396916625018303,
+        "p50_abs_forced_logprob_delta": 0.015102624893188477,
+        "p95_abs_forced_logprob_delta": 0.16117334365844727,
+        "p99_abs_forced_logprob_delta": 0.2359534502029419,
+        "max_abs_forced_logprob_delta": 0.25580453872680664,
+        "drift_epsilon": 0.05,
+        "positions_over_drift_epsilon": 7,
+        "fraction_over_drift_epsilon": 0.2692307692307692
+      },
+      "completion_modal": {
+        "reference": {
+          "sequence": [
+            7281,
+            11,
+            10339,
+            3170,
+            279,
+            55980,
+            3950,
+            8500,
+            374,
+            537,
+            14312,
+            22823,
+            369,
+            264,
+            2661,
+            1681,
+            13,
+            320,
+            16,
+            15,
+            15423,
+            692,
+            1249,
+            11625,
+            279,
+            3491,
+            315,
+            37852,
+            7388,
+            304,
+            264,
+            7162,
+            11,
+            582,
+            1184,
+            311,
+            3535,
+            279,
+            7286,
+            315,
+            264,
+            55980,
+            3950,
+            8500,
+            13,
+            362,
+            55980,
+            3950,
+            8500,
+            374,
+            264,
+            8500,
+            315,
+            7388,
+            429,
+            525,
+            4091,
+            304,
+            264,
+            1616,
+            429,
+            30027,
+            4756,
+            279
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "candidate": {
+          "sequence": [
+            7281,
+            11,
+            10339,
+            3170,
+            279,
+            55980,
+            3950,
+            8500,
+            374,
+            537,
+            14312,
+            22823,
+            369,
+            264,
+            2661,
+            1681,
+            13,
+            320,
+            16,
+            15,
+            15423,
+            692,
+            1249,
+            11625,
+            279,
+            3491,
+            315,
+            37852,
+            7388,
+            304,
+            264,
+            7162,
+            11,
+            582,
+            1184,
+            311,
+            3535,
+            279,
+            7286,
+            315,
+            264,
+            55980,
+            3950,
+            8500,
+            13,
+            362,
+            55980,
+            3950,
+            8500,
+            374,
+            264,
+            8500,
+            315,
+            7388,
+            429,
+            264,
+            28809,
+            39911,
+            3118,
+            389,
+            279,
+            1482,
+            3950,
+            11
+          ],
+          "count": 2,
+          "fraction": 1.0,
+          "distinct_sequences": 1
+        },
+        "cross": {
+          "exact_match": false,
+          "reference_length": 64,
+          "candidate_length": 64,
+          "first_token_divergence_step": 55,
+          "aligned_token_agreement_rate": 0.859375
+        },
+        "note": "Completion identity is diagnostic only across precision; post-divergence differences are downstream evidence."
+      },
+      "cache_observation": {
+        "reference": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        },
+        "candidate": {
+          "num_cached_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          },
+          "num_cache_creation_tokens": {
+            "observations": 2,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "telemetry": {
+        "reference": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp1/p15.json",
+          "evidence_bytes": 44124,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "0",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 1,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 1,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p15"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 20.337094868998975,
+            "generation_seconds": 0.6590197600889951,
+            "normalization_seconds": 0.00024385889992117882,
+            "total_seconds_before_json_write": 27.894396918127313,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 27,
+          "hardware_runtime_fingerprint_sha256": "e677cedf4e1378ce3a93fdec6afc745e4bfb9e58c7ce4f83c48aeb6d2beba14d"
+        },
+        "candidate": {
+          "evidence_file": "/zhaojinbin/vllm-lab/pro6k/kvq/out/20260922-032814/ref_tp2/p15.json",
+          "evidence_bytes": 44329,
+          "environment": {
+            "python_version": "3.10.20",
+            "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+            "machine": "x86_64",
+            "vllm_version": "0.29.1rc1.dev505+ge9f169d16",
+            "vllm_commit": null,
+            "torch_version": "2.13.0",
+            "cuda_visible_devices": "2,3",
+            "torch_cuda_available": true,
+            "cuda_version": "13.0",
+            "accelerators": [
+              {
+                "index": 0,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              },
+              {
+                "index": 1,
+                "name": "NVIDIA RPBZZZ6",
+                "capability": [
+                  12,
+                  0
+                ]
+              }
+            ]
+          },
+          "resolved_vllm_config": {
+            "dtype": "torch.bfloat16",
+            "quantization": null,
+            "max_model_len": 40960,
+            "enforce_eager": false,
+            "logprobs_mode": "raw_logprobs",
+            "kv_cache_dtype": "auto",
+            "enable_prefix_caching": false,
+            "tensor_parallel_size": 2,
+            "pipeline_parallel_size": 1,
+            "data_parallel_size": 1,
+            "max_num_batched_tokens": 16384,
+            "available": true
+          },
+          "llm_kwargs": {
+            "tensor_parallel_size": 2,
+            "enable_prefix_caching": false
+          },
+          "run_metadata": {
+            "pr": "#49764",
+            "cohort": "short_default",
+            "gpu": "RTX_PRO_6000_sm120",
+            "vllm_commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+            "pr_merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+            "quant_scheme_candidate": "fp8_per_tensor_online",
+            "model_snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+            "prompt_id": "p15"
+          },
+          "collection_timing": {
+            "clock": "time.perf_counter",
+            "engine_init_seconds": 21.565137536963448,
+            "generation_seconds": 0.6037812971044332,
+            "normalization_seconds": 0.00023725698702037334,
+            "total_seconds_before_json_write": 29.102262386819348,
+            "note": "Wall-clock diagnostic telemetry only; not a throughput benchmark."
+          },
+          "execution_mode": "sequential",
+          "model": "Qwen/Qwen3-1.7B",
+          "temperature": 0.0,
+          "seed": null,
+          "prompt_logprobs_k": 5,
+          "max_tokens": 64,
+          "prompt_token_count": 27,
+          "hardware_runtime_fingerprint_sha256": "d2551232185ff9650bfe73982e9353b2079903b0d466c0f2da9acf98782b7724"
+        }
+      },
+      "comparability_warnings": [
+        "tensor_parallel_size differs: reference=1, candidate=2",
+        "accelerator set differs: reference=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}], candidate=[{'index': 0, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}, {'index': 1, 'name': 'NVIDIA RPBZZZ6', 'capability': [12, 0]}]"
+      ],
+      "analysis_runtime_seconds": 0.0022248108871281147,
+      "quality_gate": {
+        "status": "NOT_EVALUATED",
+        "policy_name": null,
+        "checks": [],
+        "note": "No quality-gate policy supplied. Measurements remain diagnostic only."
+      }
+    }
+  ],
+  "long_context_cost_note": "This profile reports evidence size, prompt length, and analyzer runtime. Existing VPP v0.1 evidence does not record collector wall-clock time, so capture overhead is unavailable unless supplied in run.metadata by the collector/wrapper. Position filtering after capture cannot reduce vLLM prompt_logprobs collection cost; use selected short/boundary/long prompt cohorts to control capture cost."
+}
