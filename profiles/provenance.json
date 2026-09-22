@@ -1,0 +1,35 @@
+{
+ "purpose": "VPP kv-cache-quant profile applied to vLLM PR #49764 (online weight-scale sharing across TP)",
+ "pr": {
+  "number": 49764,
+  "title": "[Quantization] Share online weight scales across TP",
+  "merge_commit": "8170c23c4fa36ffdc5890e5df46b4825fd9d0745",
+  "merged_at": "2026-08-06T23:34:34Z",
+  "url": "https://github.com/vllm-project/vllm/pull/49764"
+ },
+ "vllm_under_test": {
+  "commit": "e9f169d16b9408bb9ae44f75072b91a5521d733c",
+  "subject": "[CI] Add pre-commit check that new tests are tethered to Buildkite jobs (#54867)",
+  "committed": "2026-09-21T18:36:45-07:00",
+  "wheel": "vllm-0.29.1rc1.dev505+ge9f169d16-cp38-abi3-manylinux_2_28_x86_64.whl",
+  "wheel_source": "https://wheels.vllm.ai/e9f169d16b9408bb9ae44f75072b91a5521d733c/",
+  "is_latest_nightly_at_2026-09-22T02:30Z": true,
+  "main_head_at_check": "1fee69838eeb72622b441a593888687831c1e434 (2026-09-22T02:05Z, no nightly wheel yet)"
+ },
+ "pr_merge_commit_is_ancestor_of_vllm_under_test": true,
+ "commits_between": 2089,
+ "vpp": {
+  "repo": "https://github.com/ZC502/vllm-position-parity",
+  "commit": "575faff5",
+  "profile": "profiles/kv_cache_quant.py (prototype v0.1)"
+ },
+ "candidate_quantization": "fp8_per_tensor (online shorthand; linear/moe weight=kFp8StaticTensorSym; path = online/fp8.py -> amax_for_tp_weight_quant)",
+ "prompts": "16 default prompts of ZC502 MRV2 draft-parity harness (VPP collect_vllm.py has no built-in prompt set); one collect run per prompt, --repeats 2",
+ "model": {
+  "id": "Qwen/Qwen3-1.7B",
+  "snapshot": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "source": "HF cache /zhaojinbin/hf-cache (offline)",
+  "dtype": "bfloat16",
+  "note": "/zhaojinbin/vllm-lab/models/Qwen3-1.7B was an incomplete ModelScope copy without safetensors shards; first attempt job-pz16esydnxxf failed on it and was stopped"
+ }
+}
