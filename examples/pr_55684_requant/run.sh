@@ -352,4 +352,4 @@ print("wrote", out / "run_manifest.json")
 PY
 
 note "captures complete"
-note "next: python summarize_55684.py --run-root '$OUT_ROOT' --vpp-root '$VPP_ROOT'"
+note "next: python summarize.py --run-root '$OUT_ROOT' --vpp-root '$VPP_ROOT'"
