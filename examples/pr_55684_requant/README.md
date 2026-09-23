@@ -42,7 +42,7 @@ export VPP_ROOT=/path/to/vllm-position-parity
 export GPU_TP1=0
 export GPU_TP2=0,1
 
-bash run_55684_vpp.sh
+bash run.sh
 ```
 
 Optional knobs:
@@ -66,7 +66,7 @@ The PR revision is *not* hardcoded because the PR can move. The exact `PR_SRC` H
 ## Summarize
 
 ```bash
-python summarize_55684.py \
+python summarize.py \
   --run-root /path/to/output \
   --vpp-root "$VPP_ROOT"
 ```
