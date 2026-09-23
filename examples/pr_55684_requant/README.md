@@ -1,5 +1,9 @@
 # VPP five-arm runner for vLLM PR #55684
 
+"**Status: experimental / PR-specific validation example.**
+
+This example tracks the evolving vLLM PR #55684. It is not a stable VPP public API. Always record the exact vLLM revision used for a capture."
+
 This bundle operationalizes the five-arm design:
 
 - **A** — pre-PR baseline, native MXFP8, TP1
