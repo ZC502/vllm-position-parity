@@ -1,0 +1,37 @@
+{
+  "schema": "vpp-pr55684-provenance/0.1",
+  "purpose": "Implementation-independent VPP differential matrix around vLLM PR #55684",
+  "pr": {
+    "number": 55684,
+    "title": "[Quantization] Layer re-quantization for linear layers through online quantization API (MXFP8 -> FP8 PTPC showcase)"
+  },
+  "commits": {
+    "pre_pr_baseline": "5893426b88f7b3cd21101d194eb1c6f0a6f0e27b",
+    "pr_head": "3fb20d105c41e51067cad9883bdb864444a53fe5",
+    "vpp": "da59bd846bbf21f287d47a00a5dafc67a598589d"
+  },
+  "model": "mmangkad/Qwen3-4B-Instruct-2507-MXFP8",
+  "arms": {
+    "A": "pre-PR native MXFP8 TP1",
+    "B": "PR native MXFP8 TP1",
+    "C": "PR MXFP8->FP8 PTPC fp8_per_channel TP1",
+    "D": "PR native MXFP8 TP2",
+    "E": "PR MXFP8->FP8 PTPC fp8_per_channel TP2"
+  },
+  "comparisons": {
+    "A_vs_B": "PR default-path neutrality",
+    "B_vs_C": "intended re-quantization residual",
+    "B_vs_D": "native MXFP8 TP sensitivity",
+    "C_vs_E": "re-quantized FP8 PTPC TP sensitivity"
+  },
+  "capture_contract": {
+    "same_prompt_cohort": true,
+    "same_sampling_contract": true,
+    "A_B_C_same_physical_gpu_requested": true,
+    "D_E_same_physical_gpu_pair_requested": true,
+    "prefix_caching": false,
+    "cross_precision_bit_exact_required": false
+  },
+  "evidence_file_count": 197,
+  "sha256_manifest": "SHA256SUMS.txt"
+}
