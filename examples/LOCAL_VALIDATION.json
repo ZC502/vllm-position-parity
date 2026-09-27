@@ -1,0 +1,11 @@
+{
+  "validation_scope": "local static validation + synthetic analyzer self-test only",
+  "native_vllm_pr47922_integration_run": false,
+  "checks": {
+    "python_compile": "PASS",
+    "bash_syntax": "PASS",
+    "workload_dry_run": "PASS (14 events: seed + 12 churn + seed_replay)",
+    "synthetic_summarizer_selftest": "PASS"
+  },
+  "note": "No real #47922 scheduler/KV measurements are included in this bundle. The friend-run capture is the implementation evidence."
+}
