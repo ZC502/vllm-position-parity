@@ -12,6 +12,117 @@ controlled arms
 
 This is not the original VPP prompt/decode-logprob analyzer. It reuses the same evidence discipline for a new trace domain: `scheduler_kv_request_boundary`.
 
+## Experimental Controls and Operational Rules
+
+This pilot applies the VPP differential-evidence pattern to a new trace domain:
+scheduler / KV-cache behavior at observable request boundaries.
+
+### Core controls
+
+1. **Matched workload**
+   - Both A/B arms must execute the exact same workload.
+   - The default workload is:
+     `1 seed + 12 churn requests + 1 seed replay = 14 events`.
+   - The canonical evidence records a workload SHA-256, and the summarizer
+     requires the workload hash to match across arms.
+
+2. **Output-token control**
+   - Every event verifies:
+
+     ```text
+     observed_output_tokens == prescribed_simulated_output_tokens
+     ```
+
+   - If this control fails, the scheduler/KV comparison should not be treated
+     as valid evidence.
+
+3. **Single experimental variable**
+   - In the default matrix, the intended A/B difference is only:
+
+     ```text
+     A_high_capacity = 16 GiB virtual KV
+     B_low_capacity  =  2 GiB virtual KV
+     ```
+
+   - Model, workload, simulator revision, request order, prefix-caching mode,
+     and prescribed output tokens must remain matched.
+
+---
+
+## Operational Rules
+
+### 1. Pin exact provenance
+
+PR #47922 is still evolving, so results must be tied to the exact vLLM
+revision that produced them.
+
+`run_matrix.sh` records:
+
+```text
+git rev-parse HEAD
+git branch
+git working-tree status
+vLLM version
+model
+KV capacity
+workload hash
+```
+into the run manifest / canonical evidence.
+The pilot also fixes these runtime controls:
+
+```
+TRITON_CPU_BACKEND=1
+VLLM_ENABLE_V1_MULTIPROCESSING=0
+```
+
+The latter is an experiment control used by this pilot; it should not be
+interpreted as a universal requirement of simulated-forward mode.
+
+### 2. Strict serial request-boundary snapshotting
+
+The collector runs requests serially:
+```
+initial metric snapshot
+    ↓
+llm.generate(event_0)
+    ↓
+metric snapshot
+    ↓
+event_0 delta
+    ↓
+llm.generate(event_1)
+    ↓
+metric snapshot
+    ↓
+event_1 delta
+    ↓
+...
+```
+The previous request's `after` snapshot becomes the next request's `before`snapshot.
+
+This prevents concurrent workload activity from being intentionally introducedinto the v0.1 experiment and keeps each metric delta associated with one observable request boundary.
+
+Note that this is **request-boundary evidence**, not instrumentation of internal scheduler transitions.
+
+### 3. Low-capacity fallback
+
+The default low-capacity arm is:
+```
+2 GiB = 2147483648 bytes
+```
+If that arm cannot initialize or complete the workload, treat the capture as **INCOMPLETE**. Do not classify initialization failure as a scheduler-state divergence.
+
+Run a new complete matrix at 4 GiB:
+```
+LOW_KV_BYTES=4294967296 \
+OUT_DIR="$PWD/results/4g-pilot" \
+VLLM_REPO=/path/to/vllm-pr47922 \
+./run_matrix.sh
+```
+**Do not reuse successful 2 GiB runs together with new 4 GiB runs**. Once the capacity is changed, all repeats in both arms should be rerun as one new capture.
+
+
+
 ## Default experiment
 
 Hold the request token trace and caller-prescribed simulated output tokens fixed; change only virtual KV capacity.
